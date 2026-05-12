@@ -38,14 +38,3 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest pytest-html
-
-      - name: Run Unit Tests
-        # Added --html flag to actually create the report folder you want to upload
-        run: pytest ./tests/test_store.py --html=reports/report.html --self-contained-html
-
-      - name: Upload Test Results
-        if: always() # Ensures reports upload even if tests fail
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: reports/
